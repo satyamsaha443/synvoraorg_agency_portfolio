@@ -190,6 +190,8 @@ section { position: relative; z-index: 1; }
   display: inline-block;
   position: relative;
   overflow: hidden;
+  isolation: isolate;
+  z-index: 1;
 }
 .btn-primary::after {
   content: '';
@@ -215,6 +217,8 @@ section { position: relative; z-index: 1; }
   transition: all 0.3s;
   text-decoration: none;
   display: inline-block;
+  isolation: isolate;
+  z-index: 1;
 }
 .btn-outline:hover { border-color: var(--lime); color: var(--lime); }
 
@@ -805,12 +809,16 @@ footer {
 /* ── GLITCH ── */
 .glitch {
   position: relative;
+  display: inline-block;
+  isolation: isolate;
 }
 .glitch::before, .glitch::after {
   content: attr(data-text);
   position: absolute;
   inset: 0;
   font-family: 'Bebas Neue', sans-serif;
+  pointer-events: none;
+  z-index: 0;
 }
 .glitch::before {
   color: var(--cyan);
