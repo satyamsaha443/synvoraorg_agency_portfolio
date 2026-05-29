@@ -123,8 +123,26 @@ section { position: relative; z-index: 1; }
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0 60px;
+  padding: 100px 60px 150px; /* ← add top padding for nav + bottom clearance for scroll indicator */
   overflow: hidden;
+}
+
+/* ── HERO SCROLL ── */
+.hero-scroll {
+  position: absolute;
+  bottom: 40px;
+  left: 60px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: 0;
+  animation: fadeIn 1s 1.4s ease forwards;
+  z-index: 2;              /* ← sit above canvas, below nav */
+  pointer-events: none;    /* ← won't interfere with button clicks */
 }
 .hero-eyebrow {
   font-size: 11px;
@@ -222,20 +240,6 @@ section { position: relative; z-index: 1; }
 }
 .btn-outline:hover { border-color: var(--lime); color: var(--lime); }
 
-.hero-scroll {
-  position: absolute;
-  bottom: 40px;
-  left: 60px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 10px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--muted);
-  opacity: 0;
-  animation: fadeIn 1s 1.4s ease forwards;
-}
 .scroll-line {
   width: 40px; height: 1px;
   background: var(--muted);
@@ -608,6 +612,11 @@ section { position: relative; z-index: 1; }
 .tech-row-name { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--mid); min-width: 160px; }
 .tech-row-pct { font-size: 11px; color: var(--lime); min-width: 36px; text-align: right; }
 
+/* ── PROJECTS ── */
+#projects {
+  padding: 140px 60px;
+}
+
 /* ── PROCESS ── */
 #process {
   padding: 120px 60px;
@@ -709,6 +718,52 @@ section { position: relative; z-index: 1; }
   opacity: 0;
   transform: translateY(20px);
   transition: all 0.6s 0.1s;
+}
+.contact-meta {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s 0.35s;
+}
+
+.contact-meta.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.meta-card {
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.02);
+  padding: 18px 28px;
+  min-width: 180px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.meta-card:hover {
+  border-color: rgba(200,240,58,0.3);
+  transform: translateY(-4px);
+}
+
+.meta-label {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.meta-value {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 26px;
+  letter-spacing: 1px;
+  color: var(--lime);
 }
 .contact-h2.visible { opacity: 1; transform: translateY(0); }
 .contact-sub {
@@ -878,6 +933,7 @@ footer {
     <li><a href="#founders">Team</a></li>
     <li><a href="#why">Why Us</a></li>
     <li><a href="#process">Process</a></li>
+    <li><a href="#projects">Projects</a></li>
   </ul>
   <a href="mailto:satyamsaha443@gmail.com" class="nav-cta">Hire Us</a>
 </nav>
@@ -890,7 +946,12 @@ footer {
     <span class="line2">THINGS THAT</span>
     <span class="accent">SCALE.</span>
   </h1>
-  <p class="hero-sub">Agentic AI systems. Enterprise backends. Distributed architectures. Two senior engineers. Full ownership. Zero hand-holding.</p>
+  <p class="hero-sub">
+    Agentic AI systems. Enterprise backends. Distributed architectures.
+    Full-stack product delivery including UI/UX design, frontend, backend,
+    cloud deployment, and AI integrations. Two senior engineers.
+    Full ownership. Zero hand-holding.
+  </p>
   <div class="hero-actions">
     <a href="#contact" class="btn-primary"><span>Start a Project →</span></a>
     <a href="#services" class="btn-outline">Our Services</a>
@@ -1249,6 +1310,87 @@ footer {
   </div>
 </section>
 
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header">
+    <div>
+      <div class="section-label">Selected Work</div>
+      <h2 class="section-h2">REAL<br><span class="ghost">PROJECTS.</span></h2>
+    </div>
+    <p class="section-desc">
+      Production systems, AI integrations, and scalable backend platforms
+      we've engineered across different domains.
+    </p>
+  </div>
+
+  <div class="services-grid">
+
+    <!-- PROJECT 1 -->
+    <div class="service-card">
+      <div class="service-num">01</div>
+
+      <div class="service-title">AI Incident Resolution System</div>
+
+      <div class="service-desc">
+        Built an Agentic AI workflow integrated with enterprise IAM systems
+        using MCP servers and Claude APIs. Reduced incident resolution
+        time by 60% through automated triage and intelligent workflows.
+      </div>
+
+      <div class="service-tags">
+        <span class="tag">Claude API</span>
+        <span class="tag">LangChain</span>
+        <span class="tag">MCP</span>
+        <span class="tag">Azure</span>
+        <span class="tag">Automation</span>
+      </div>
+    </div>
+
+    <!-- PROJECT 2 -->
+    <div class="service-card">
+      <div class="service-num">02</div>
+
+      <div class="service-title">Distributed Archival Platform</div>
+
+      <div class="service-desc">
+        Developed scalable Java Spring Boot microservices for enterprise
+        archival systems handling large-scale ingestion pipelines using
+        Kafka, RabbitMQ, AWS S3, and ArgoCD deployment workflows.
+      </div>
+
+      <div class="service-tags">
+        <span class="tag">Spring Boot</span>
+        <span class="tag">Kafka</span>
+        <span class="tag">RabbitMQ</span>
+        <span class="tag">AWS S3</span>
+        <span class="tag">ArgoCD</span>
+      </div>
+    </div>
+
+    <!-- PROJECT 3 -->
+    <div class="service-card">
+      <div class="service-num">03</div>
+
+      <div class="service-title">Document Management REST API</div>
+
+      <div class="service-desc">
+        Engineered a cloud-native document management platform with CRUD APIs,
+        Azure Blob Storage integration, CSV export functionality, and
+        intelligent entity extraction pipelines.
+      </div>
+
+      <div class="service-tags">
+        <span class="tag">Java</span>
+        <span class="tag">Spring Boot</span>
+        <span class="tag">MongoDB</span>
+        <span class="tag">Azure Blob</span>
+        <span class="tag">REST APIs</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section id="contact">
   <div class="contact-label">Ready to Build?</div>
@@ -1260,6 +1402,22 @@ footer {
   </div>
   <div class="contact-cta">
     <a href="mailto:satyamsaha443@gmail.com?subject=Project Enquiry — Synvoraorg&body=Hi Satyam and Rishabh,%0A%0AI'd like to discuss a project with Synvoraorg.%0A%0AProject brief:%0A" class="btn-primary" style="font-size:13px;padding:20px 48px"><span>Send Us a Message →</span></a>
+  </div>
+  <div class="contact-meta">
+    <div class="meta-card">
+      <span class="meta-label">Hourly Rate</span>
+      <span class="meta-value">$10–$20/hr</span>
+    </div>
+
+    <div class="meta-card">
+      <span class="meta-label">Availability</span>
+      <span class="meta-value">20–30 hrs / week</span>
+    </div>
+
+    <div class="meta-card">
+      <span class="meta-label">Services</span>
+      <span class="meta-value">Design + Development</span>
+    </div>
   </div>
 </section>
 
@@ -1387,7 +1545,7 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 
 document.querySelectorAll(
-  '.service-card, .founder-card, .why-item, .why-visual, .process-step, .contact-label, .contact-h2, .contact-sub, .contact-emails, .contact-cta'
+  '.service-card, .founder-card, .why-item, .why-visual, .process-step, .contact-label, .contact-h2, .contact-sub, .contact-emails, .contact-meta, .contact-cta'
 ).forEach(el => observer.observe(el));
 
 // Stagger service cards and process steps
